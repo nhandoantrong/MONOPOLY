@@ -1,1 +1,47 @@
 
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
+public class Canvas extends JPanel //implements MouseListener
+	{
+		public final ImageIcon board=new ImageIcon("board1.jpg");
+		public final ImageIcon lulu=new ImageIcon("lulu2.jpg");
+		private int x,y;
+		public Canvas(int x,int y)
+		{
+			
+			this.x=x;
+			this.y=y;
+//			addMouseListener(this);
+		}
+		public void setXY(int x,int y)
+		{
+			this.x=x;
+			this.y=y;
+		}
+		
+		@Override
+	    public void paintComponent (Graphics g) 
+		 {
+	       super.paintComponent(g);
+	       g.drawImage(board.getImage(),0 ,0 ,null );
+	       g.drawImage(lulu.getImage(), x, y, null);
+	       
+	    }
+//		  @Override
+//		   public void mouseClicked(MouseEvent evt)
+//		  {
+//			  
+//		  }
+//		  @Override public void mousePressed(MouseEvent evt) 
+//		  {
+//			  
+//		  }
+//		   @Override public void mouseReleased(MouseEvent evt) { }
+//		   @Override public void mouseEntered(MouseEvent evt) { }
+//		   @Override public void mouseExited(MouseEvent evt) { }
+	}
