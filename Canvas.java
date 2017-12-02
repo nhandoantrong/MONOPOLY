@@ -1,3 +1,5 @@
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,14 +15,15 @@ public class Canvas extends JPanel //implements MouseListener
 				new ImageIcon ("4.jpg"),new ImageIcon ("5.jpg"),new ImageIcon ("6.jpg")};
 		public ImageIcon lulugif = new ImageIcon("lulugif.gif");
 		private int x,y,d1,d2;
+
 		public Canvas(int x,int y,int d1,int d2)
 		{
 			
 			this.x=x;
-			this.y=y;
+			this.y=y; 	
 			this.d1=d1;
 			this.d2=d2;
-//			addMouseListener(this);
+			this.setLayout(new FlowLayout());
 		}
 		public void setXY(int x,int y)
 		{
@@ -42,7 +45,6 @@ public class Canvas extends JPanel //implements MouseListener
 	       g.drawImage(lulugif.getImage(),70,70,70,70 ,null );
 	       g.drawImage(dice[d1-1].getImage(),300,300,null);
 	       g.drawImage(dice[d2-1].getImage(),400,300,null);
-	       
 	    }
 //		  @Override
 //		   public void mouseClicked(MouseEvent evt)
