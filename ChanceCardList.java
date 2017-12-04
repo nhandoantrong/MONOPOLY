@@ -15,4 +15,20 @@ public class ChanceCardList
 		list.add(new ChanceCard("Advance to RIO DE JANEIRO",0,0,39));
 		
 	}
+	public ChanceCard getChanceCard(int num)
+	{
+		return list.get(num-1);
+	}
+	public void removeChanceCard(int num)
+	{
+		list.remove(num-1);
+	}
+	public int size()
+	{
+		return list.size();
+	}
+	public Boolean isEmpty()
+	{
+		return list.isEmpty();
+	}
 }

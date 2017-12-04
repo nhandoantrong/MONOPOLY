@@ -42,7 +42,6 @@ public class Canvas extends JPanel //implements MouseListener
 	       super.paintComponent(g);
 	       g.drawImage(board.getImage(),0 ,0 ,null );
 	       g.drawImage(lulu.getImage(), x, y, null);
-	       g.drawImage(lulugif.getImage(),70,70,70,70 ,null );
 	       g.drawImage(dice[d1-1].getImage(),300,300,null);
 	       g.drawImage(dice[d2-1].getImage(),400,300,null);
 	    }

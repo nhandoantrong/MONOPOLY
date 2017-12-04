@@ -1,6 +1,6 @@
 package cell;
 public class Land extends Cell {
-	private int price,housePrice,hotelPrice,own,cost,houseNumber=0;
+	private int price,housePrice,hotelPrice,own=0,cost,houseNumber=0;
 	private String name;
 	public Land(String name,int price, int housePrice,int hotelPrice,int pos)
 	{
@@ -10,6 +10,7 @@ public class Land extends Cell {
 		this.housePrice=housePrice;
 		cost=price/10;
 	}
+	@Override
 	public int getPrice() {
 		return price;
 	}
@@ -28,11 +29,22 @@ public class Land extends Cell {
 	public void setHotelPrice(int hotelPrice) {
 		this.hotelPrice = hotelPrice;
 	}
-	
-	public void Owner(int o)
+	@Override
+	public int getHouse()
+	{
+		return houseNumber;
+	}
+	@Override
+	public void setOwn(int o)
 	{
 		own=o;
 	}
+	@Override
+	public int getOwn()
+	{
+		return own;
+	}
+	@Override
 	public void houseUpgrade()
 	{
 		houseNumber++;
@@ -61,7 +73,7 @@ public class Land extends Cell {
 	@Override
 	public String toString()
 	{
-		String str="Land Name : "+ name+"\n";
+		String str="Land Name : "+ name+"\n"+"price: "+price;
 		int rent=price/10;
 		str+="RENT : "+rent+"\n";
 		str+="With 1 house : "+rent*5+"\n";
@@ -75,4 +87,9 @@ public class Land extends Cell {
 		return str;
 	}
 	
+	@Override
+	public String getType()
+	{
+		return "land";
+	}
 }

@@ -37,7 +37,9 @@ public class DisplayPlayer extends JPanel {
 		for (int i=0;i<player.getList().size();i++)
 		{
 			y+=20;
-			g.drawString(player.getList().getLand(i).getName(), x, y);
+			if (player.getList().getLand(i).getType()=="land")
+			g.drawString(player.getList().getLand(i).getName()+" ("+String.valueOf(player.getList().getLand(i).getHouse())+" house(s) )", x, y);
+			else g.drawString(player.getList().getLand(i).getName(),x,y);
 		}
 		
 	}

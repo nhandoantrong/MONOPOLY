@@ -8,7 +8,7 @@ public class Money  {
 	}
 	public void substract(int cost)
 	{
-		value+=cost;
+		value-=cost;
 	}
 	public void add(int cost)
 	{

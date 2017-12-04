@@ -2,10 +2,11 @@ package player;
 import cell.*;
 public class Player 
 {
-	private int turn,pos;
+	private int turn,pos,jailturn=0;
 	private String name;
 	private Money money;
 	private OwnLand landlist;
+	private Boolean jail=false;
 	
 	public Player(String name,int turn, int pos,  Money money) {
 		this.turn = turn;
@@ -33,5 +34,29 @@ public class Player
 	public Money getMoney()
 	{
 		return money;
+	}
+	public int getPos()
+	{
+		return pos;
+	}
+	public void setPos(int pos)
+	{
+		this.pos=pos;
+	}
+	public void setJail(Boolean n)
+	{
+		jail=n;
+	}
+	public void setJailturn(int jailturn)
+	{
+		this.jailturn=jailturn;
+	}
+	public Boolean getJail()
+	{
+		return jail;
+	}
+	public int getJailturn()
+	{
+		return jailturn;
 	}
 }
