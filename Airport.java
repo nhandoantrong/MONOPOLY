@@ -27,4 +27,9 @@ public class Airport extends Cell {
 		return price;
 		
 	}
+	@Override
+	public int getCost()
+	{
+		return rent;
+	}
 }

@@ -8,6 +8,7 @@ public class Land extends Cell {
 		this.price=price;
 		this.hotelPrice=hotelPrice;
 		this.housePrice=housePrice;
+		this.name=name;
 		cost=price/10;
 	}
 	@Override
@@ -62,11 +63,11 @@ public class Land extends Cell {
 		}
 		else if (houseNumber==4)
 		{
-			cost*=1.25;
+			cost*=5/4;
 		}
 		else if (houseNumber==5)
 		{
-			cost*=1.25;
+			cost*=5/4;
 		}
 		else houseNumber=5;
 	}
@@ -78,9 +79,9 @@ public class Land extends Cell {
 		str+="RENT : "+rent+"\n";
 		str+="With 1 house : "+rent*5+"\n";
 		str+="with 2 houses : "+rent*5*3+"\n";
-		str+="with 3 house : "+rent*5*3*3+"\n";
-		str+="with 4 house : "+rent*5*3*3*1.25+"\n";
-		str+="with 4 house : "+rent*5*3*3*1.25*1.25+"\n";
+		str+="with 3 house s: "+rent*5*3*3+"\n";
+		str+="with 4 houses : "+rent*5*3*3*1.25+"\n";
+		str+="with hotel : "+rent*5*3*3*1.25*1.25+"\n";
 		str+="Houses Cost : "+housePrice+"\n";
 		str+="Hotel Cost : "+hotelPrice+"\n";
 		str+="Mortgage Value : "+ price/2+"\n";
@@ -91,5 +92,10 @@ public class Land extends Cell {
 	public String getType()
 	{
 		return "land";
+	}
+	@Override
+	public int getCost()
+	{
+		return cost;
 	}
 }

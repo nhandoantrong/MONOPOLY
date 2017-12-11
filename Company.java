@@ -25,5 +25,12 @@ public class Company extends Cell {
 	public int getPrice() {
 		return price;
 	}
-	
+	@Override
+	public String toString()
+	{
+		String str=super.getName();
+		str+="\nIf one UTILITY is owned, rent is 40 times amount shown on dice";
+		str+="\nIf both UTILYTY are own, rent is 100 times amount shown on dice";
+		return str;
+	}
 }

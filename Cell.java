@@ -36,4 +36,14 @@ package cell;
 		 return 0;
 	 }
 	 public void houseUpgrade() {}
+	 public String toString()
+	 {
+		 String str="";
+		 str+=name+"\n";
+		 return str;
+	 }
+	 public int getCost()
+	 {
+		 return 0;
+	 }
 }
