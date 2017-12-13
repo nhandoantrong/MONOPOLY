@@ -9,13 +9,13 @@ import cell.*;
 import player.*;
 public class Field extends JFrame implements MouseMotionListener
 {
-	private JTextField t1 = new JTextField(""),t2=new JTextField("");
 	private JButton rollButton= new JButton("Roll");
 	private JButton buyButton= new JButton("Buy");
 	private JButton upgradeButton= new JButton("Uprade House");
+	private JButton finishButton=new JButton("Finish");
 	
-	private Player play1= new Player("LULU",0,0,new Money(20000));
-	private Player play2= new Player("ANNIE",0,0,new Money(20000));
+	private Player play1= new Player("LULU",0,0,new Money(15000));
+	private Player play2= new Player("ANNIE",0,0,new Money(15000));
 	private Canvas canvas=new Canvas(625,615,625+35,615+35,1,1);
 	
 	private DisplayPlayer displayplayer=new DisplayPlayer(play1);
@@ -23,29 +23,28 @@ public class Field extends JFrame implements MouseMotionListener
 	
 	private int x=625,y=615,d1=1,d2=1,turn=0,x2=625+35,y2=615+35;
 	private Dice dice=new Dice();
-
+	private Container cp=getContentPane();
 	
 	private CellList celllist= new CellList();
 	private DisplayCell displaycell= new DisplayCell(celllist.get(0));
+	private DisplayTurn displayturn=new DisplayTurn(0);
 	public Field()
 	{
-		Container cp=getContentPane();
 		cp.setLayout(null);
 		d1=dice.getDice1();
 		d2=dice.getDice2();
-		
-		displayplayer.setPlayer(play1);
 		cp.add(canvas);
 		cp.add(rollButton);
 		cp.add(buyButton);
+		cp.add(finishButton);
 		cp.add(upgradeButton);
 		cp.add(displayplayer);
 		cp.add(displayplayer2);
 		cp.add(displaycell);
+		cp.add(displayturn);
 		
 		displayplayer2.setBounds(951, 0, 250, 300);
 		displayplayer.setBounds(701, 0, 250, 300);
-		displaycell.setBounds(701,450,200,200);
 		canvas.setBounds(0, 0, 700, 700);
 		rollButton.setBounds(701, 400, 100, 50);
 		rollButton.addActionListener(new rollListener());
@@ -55,7 +54,11 @@ public class Field extends JFrame implements MouseMotionListener
 		upgradeButton.setBounds(901, 400, 200, 50);
 		upgradeButton.setEnabled(false);
 		upgradeButton.addActionListener(new upgradeListener());
-		
+		finishButton.setBounds(701,450,400,50);
+		finishButton.setEnabled(false);
+		finishButton.addActionListener(new finishListener());
+		displaycell.setBounds(701,501,200,200);
+		displayturn.setBounds(901,501,400,400);
 		addMouseMotionListener(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Exit program if close-window button clicked
@@ -77,7 +80,6 @@ public class Field extends JFrame implements MouseMotionListener
 		public void actionPerformed(ActionEvent evt) 
 		{
 			if (turn==0) {
-			turn=1;
 			dice.roll();
 			d1=dice.getDice1();
 			d2=dice.getDice2();
@@ -97,6 +99,7 @@ public class Field extends JFrame implements MouseMotionListener
 					rollButton.setEnabled(false);
 					buyButton.setEnabled(false);
 					upgradeButton.setEnabled(false);
+					finishButton.setEnabled(false);
 					for (int i=0;i<(d1+d2)*57;i++)
 					{
 						if ((x>625-57*10) &&y==615) x--;
@@ -110,14 +113,16 @@ public class Field extends JFrame implements MouseMotionListener
 			                  Thread.sleep(3);  // milliseconds
 			               } catch (InterruptedException ignore) {}
 					}
-					rollButton.setEnabled(true);
+					rollButton.setEnabled(false);
 					buyButton.setEnabled(true);
 					upgradeButton.setEnabled(true);
+					finishButton.setEnabled(true);
 					if (celllist.get(pos).getOwn()==2)
 					{
 						play1.getMoney().substract(celllist.get(pos).getCost());
 						buyButton.setEnabled(false);
 						upgradeButton.setEnabled(false);
+						
 						repaint();
 					}
 					else if (type=="cell")
@@ -125,9 +130,9 @@ public class Field extends JFrame implements MouseMotionListener
 						buyButton.setEnabled(false);
 						upgradeButton.setEnabled(false);
 						if (pos==4)
-							play2.getMoney().substract(2000);
+							play1.getMoney().substract(2000);
 						else if (pos==38)
-							play2.getMoney().substract(1000);
+							play1.getMoney().substract(1000);
 						repaint();
 					}
 					else if (type=="chance")
@@ -139,6 +144,7 @@ public class Field extends JFrame implements MouseMotionListener
 					}
 					else if (celllist.get(pos).getOwn()==0)
 					{
+						
 						buyButton.setEnabled(true);
 						upgradeButton.setEnabled(false);
 					}
@@ -153,7 +159,9 @@ public class Field extends JFrame implements MouseMotionListener
 						buyButton.setEnabled(false);
 						upgradeButton.setEnabled(false);
 					}
-					if (play1.getPos()==30) 
+					if (play1.getMoney().getValue()<0)
+						win(1);
+					else if (play1.getPos()==30) 
 						{
 							play1.setPos(10);
 							x=625-57*10;
@@ -183,7 +191,10 @@ public class Field extends JFrame implements MouseMotionListener
 						play1.setJailturn(0);
 						play1.step(d1+d2);
 						play1.getMoney().substract(50);
-						move.start();
+						
+						if (play1.getMoney().getValue()<0)
+							win(1);
+						else move.start();
 					}
 				}
 			}
@@ -192,7 +203,6 @@ public class Field extends JFrame implements MouseMotionListener
 		}
 		else
 		{
-			turn=0;
 			dice.roll();
 			d1=dice.getDice1();
 			d2=dice.getDice2();
@@ -212,6 +222,7 @@ public class Field extends JFrame implements MouseMotionListener
 					rollButton.setEnabled(false);
 					buyButton.setEnabled(false);
 					upgradeButton.setEnabled(false);
+					finishButton.setEnabled(false);
 					for (int i=0;i<(d1+d2)*57;i++)
 					{
 						if ((x2==660) &&y2==650) 
@@ -354,15 +365,17 @@ public class Field extends JFrame implements MouseMotionListener
 							i--;
 						}
 					}
-					rollButton.setEnabled(true);
+					rollButton.setEnabled(false);
 					buyButton.setEnabled(true);
 					upgradeButton.setEnabled(true);
+					finishButton.setEnabled(true);
 					if (celllist.get(pos).getOwn()==1)
 					{
 						play2.getMoney().substract(celllist.get(pos).getCost());
 						
 						buyButton.setEnabled(false);
 						upgradeButton.setEnabled(false);
+						
 						repaint();
 					}
 					else if (type=="cell")
@@ -397,7 +410,9 @@ public class Field extends JFrame implements MouseMotionListener
 						buyButton.setEnabled(false);
 						upgradeButton.setEnabled(false);
 					}
-					if (play2.getPos()==30) 
+					if (play2.getMoney().getValue()<0)
+						win(0);
+					else if (play2.getPos()==30) 
 						{
 							play2.setPos(10);
 							x2=660-70-57*10;
@@ -427,7 +442,9 @@ public class Field extends JFrame implements MouseMotionListener
 						play2.setJailturn(0);
 						play2.step(d1+d2);
 						play2.getMoney().substract(50);
-						move.start();
+						if (play2.getMoney().getValue()<0)
+							win(0);
+						else move.start();
 					}
 				}
 			}
@@ -442,7 +459,7 @@ public class Field extends JFrame implements MouseMotionListener
 		@Override
 		public void actionPerformed(ActionEvent evt) 
 		{
-			if (turn==1)
+			if (turn==0)
 			{
 			int pos=play1.getPos();
 			int own=celllist.get(pos).getOwn();
@@ -452,7 +469,9 @@ public class Field extends JFrame implements MouseMotionListener
 				play1.getMoney().substract(celllist.get(pos).getPrice());
 				celllist.get(pos).setOwn(1);
 				buyButton.setEnabled(false);
-				repaint();
+				if (play1.getMoney().getValue()<0)
+					win(1);
+				else repaint();
 			}
 			}
 			else 
@@ -465,7 +484,9 @@ public class Field extends JFrame implements MouseMotionListener
 					play2.getMoney().substract(celllist.get(pos).getPrice());
 					celllist.get(pos).setOwn(2);
 					buyButton.setEnabled(false);
-					repaint();
+					if (play2.getMoney().getValue()<0)
+						win(0);
+					else repaint();
 				}
 			}
 		}
@@ -477,13 +498,16 @@ public class Field extends JFrame implements MouseMotionListener
 		@Override
 		public void actionPerformed(ActionEvent arg0) 
 		{
-			if (turn==1)
+			if (turn==0)
 			{
 			int pos=play1.getPos();
 			int own=celllist.get(pos).getOwn();
 			if (own>0&&own<6)
 			{
 				celllist.get(pos).houseUpgrade();
+				play1.getMoney().substract(celllist.get(pos).getHousePrice());
+				if (play1.getMoney().getValue()<0)
+					win(1);
 				upgradeButton.setEnabled(false);
 				repaint();
 			}
@@ -495,12 +519,55 @@ public class Field extends JFrame implements MouseMotionListener
 				if (own>0&&own<6)
 				{
 					celllist.get(pos).houseUpgrade();
+					play2.getMoney().substract(celllist.get(pos).getHousePrice());
+					if (play2.getMoney().getValue()<0)
+						win(0);
 					upgradeButton.setEnabled(false);
 					repaint();
 				}
 			}
 		}
 		
+	}
+	private class finishListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			if (turn==0)
+				{
+					turn=1;
+					displayturn.setTurn(1);
+					repaint();
+				}
+			else 
+				{
+					turn=0;
+					displayturn.setTurn(0);
+					repaint();
+				}
+			buyButton.setEnabled(false);
+			upgradeButton.setEnabled(false);
+			finishButton.setEnabled(false);
+			rollButton.setEnabled(true);
+		}
+		
+	}
+	public void win(int win)
+	{
+		cp.remove(canvas);
+		cp.remove(buyButton);
+		cp.remove(displaycell);
+		cp.remove(displayplayer);
+		cp.remove(displayplayer2);
+		cp.remove(displayturn);
+		cp.remove(finishButton);
+		cp.remove(rollButton);
+		cp.remove(upgradeButton);
+		DisplayWinner displaywin=new DisplayWinner(win);
+		cp.add(displaywin);
+		displaywin.setBounds(0,0,1500,1000);
+		repaint();
 	}
 	
 	

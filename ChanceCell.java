@@ -2,7 +2,6 @@ package cell;
 import java.util.*;
 public class ChanceCell extends Cell {
 	private int number;
-	private ChanceCardList list= new ChanceCardList();
 	private int price,a;
 	private Random r=new Random();
 	public ChanceCell(String name, int pos)

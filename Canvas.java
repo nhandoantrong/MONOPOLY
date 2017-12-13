@@ -1,4 +1,3 @@
-
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -10,12 +9,12 @@ import javax.swing.JPanel;
 
 public class Canvas extends JPanel //implements MouseListener
 	{
-		public final ImageIcon board=new ImageIcon("board1.jpg");
-		public final ImageIcon lulu=new ImageIcon("lulu2.jpg");
-		public final ImageIcon annie= new ImageIcon("annie.png");
-		public ImageIcon[] dice= {new ImageIcon ("1.jpg"),new ImageIcon ("2.jpg"),new ImageIcon ("3.jpg"),
+		private ImageIcon board=new ImageIcon("board1.jpg");
+		private ImageIcon lulu=new ImageIcon("lulu2.jpg");
+		private ImageIcon annie= new ImageIcon("annie.png");
+		private ImageIcon[] dice= {new ImageIcon ("1.jpg"),new ImageIcon ("2.jpg"),new ImageIcon ("3.jpg"),
 				new ImageIcon ("4.jpg"),new ImageIcon ("5.jpg"),new ImageIcon ("6.jpg")};
-		public ImageIcon lulugif = new ImageIcon("lulugif.gif");
+		
 		private int x,y,d1,d2,x2,y2;
 
 		public Canvas(int x,int y,int x2,int y2,int d1,int d2)
@@ -69,5 +68,3 @@ public class Canvas extends JPanel //implements MouseListener
 //		   @Override public void mouseEntered(MouseEvent evt) { }
 //		   @Override public void mouseExited(MouseEvent evt) { }
 	}
-
-

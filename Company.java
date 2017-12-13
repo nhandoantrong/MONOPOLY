@@ -1,10 +1,16 @@
 package cell;
 public class Company extends Cell {
-	private int own=0,price;
+	private int own=0,price,cost;
 	public Company(String name, int price, int pos)
 	{
 		super(name,pos);
 		this.price=price;
+		cost=250;
+	}
+	@Override
+	public int getCost()
+	{
+		return cost;
 	}
 	@Override
 	public void setOwn(int own) 

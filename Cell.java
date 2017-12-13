@@ -46,4 +46,12 @@ package cell;
 	 {
 		 return 0;
 	 }
+	 public int getHousePrice()
+	 {
+		 return 0;
+	 }
+	 public int getHotelPrice()
+	 {
+		 return 0;
+	 }
 }

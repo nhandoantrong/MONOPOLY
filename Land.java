@@ -18,12 +18,14 @@ public class Land extends Cell {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	@Override
 	public int getHousePrice() {
 		return housePrice;
 	}
 	public void setHousePrice(int housePrice) {
 		this.housePrice = housePrice;
 	}
+	@Override
 	public int getHotelPrice() {
 		return hotelPrice;
 	}
@@ -80,8 +82,8 @@ public class Land extends Cell {
 		str+="With 1 house : "+rent*5+"\n";
 		str+="with 2 houses : "+rent*5*3+"\n";
 		str+="with 3 house s: "+rent*5*3*3+"\n";
-		str+="with 4 houses : "+rent*5*3*3*1.25+"\n";
-		str+="with hotel : "+rent*5*3*3*1.25*1.25+"\n";
+		str+="with 4 houses : "+rent*5*3*3*5/4+"\n";
+		str+="with hotel : "+rent*5*3*3*5/4*5/4+"\n";
 		str+="Houses Cost : "+housePrice+"\n";
 		str+="Hotel Cost : "+hotelPrice+"\n";
 		str+="Mortgage Value : "+ price/2+"\n";
