@@ -120,6 +120,7 @@ public class Field extends JFrame implements MouseMotionListener
 					if (celllist.get(pos).getOwn()==2)
 					{
 						play1.getMoney().substract(celllist.get(pos).getCost());
+						play2.getMoney().add(celllist.get(pos).getCost());
 						buyButton.setEnabled(false);
 						upgradeButton.setEnabled(false);
 						
@@ -372,7 +373,7 @@ public class Field extends JFrame implements MouseMotionListener
 					if (celllist.get(pos).getOwn()==1)
 					{
 						play2.getMoney().substract(celllist.get(pos).getCost());
-						
+						play1.getMoney().add(celllist.get(pos).getCost());
 						buyButton.setEnabled(false);
 						upgradeButton.setEnabled(false);
 						
