@@ -15,6 +15,7 @@ public class DisplayWinner extends JPanel
 	@Override
     public void paintComponent (Graphics g) 
 	 {
+		/*Show the winning player */
 		super.paintComponent(g);
 		if (win==0)
 		{

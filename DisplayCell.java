@@ -16,12 +16,14 @@ public class DisplayCell extends JPanel {
 	}
 	public void setCell(Cell cell)
 	{
+		/*Set cell to display */
 		this.cell=cell;
 		rent=cell.getPrice()/10;
 	}
 	@Override
 	public void paintComponent(Graphics g)
 	{
+		/*Display cell's information */
 		super.paintComponent(g);
 		g.setFont(na);
 		g.drawString("Land: "+cell.getName(), 5,20);

@@ -8,8 +8,10 @@ public class ChanceCell extends Cell {
 	{
 		super(name,pos);
 	}
-	public int getprice()
+	@Override
+	public int getPrice()
 	{
+		/*Return the money player gets or pays*/
 		price=r.nextInt(3000)+1;
 		a=r.nextInt(2);
 		if (a==1)
@@ -20,16 +22,15 @@ public class ChanceCell extends Cell {
 	@Override
 	public String getType()
 	{
+		/*return the cell's type*/
 		return "chance";
 	}
 	@Override
 	public void setOwn(int own) {
-		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	public int getOwn() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

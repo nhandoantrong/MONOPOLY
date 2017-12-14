@@ -11,11 +11,13 @@ public class DisplayTurn extends JPanel
 	}
 	public void setTurn(int turn)
 	{
+		/*Set turn to display the playerPicture */
 		this.turn=turn;
 	}
 	@Override
     public void paintComponent (Graphics g) 
 	 {
+		/*Draw image of player who is playing */
 		super.paintComponent(g);
 		if (turn==0)
 		{

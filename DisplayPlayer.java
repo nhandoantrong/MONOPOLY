@@ -18,11 +18,13 @@ public class DisplayPlayer extends JPanel {
 	}
 	public void setPlayer(Player player)
 	{
+		/*Set player to display*/
 		this.player=player;
 	}
 	@Override
 	public void paintComponent(Graphics g)
 	{
+		/*display player*/
 		super.paintComponent(g);
 		g.setFont(fi);
 		g.drawString("PLAYER",10,20);

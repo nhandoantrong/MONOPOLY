@@ -13,43 +13,53 @@ public class Land extends Cell {
 	}
 	@Override
 	public int getPrice() {
+		/*return the land's price*/
 		return price;
 	}
 	public void setPrice(int price) {
+		/*set the land's price*/
 		this.price = price;
 	}
 	@Override
 	public int getHousePrice() {
+		/*return the land's house price*/
 		return housePrice;
 	}
 	public void setHousePrice(int housePrice) {
+		/*set the land's house price*/
 		this.housePrice = housePrice;
 	}
 	@Override
 	public int getHotelPrice() {
+		/*return the land's hotel price*/
 		return hotelPrice;
 	}
 	public void setHotelPrice(int hotelPrice) {
+		/*set the land's hotel price*/
 		this.hotelPrice = hotelPrice;
 	}
 	@Override
 	public int getHouse()
 	{
+		/*return the land's house number*/
 		return houseNumber;
 	}
 	@Override
 	public void setOwn(int o)
 	{
+		/*set the land's owner*/
 		own=o;
 	}
 	@Override
 	public int getOwn()
 	{
+		/*return the land's owner*/
 		return own;
 	}
 	@Override
 	public void houseUpgrade()
 	{
+		/*upgrade the number of houses*/
 		houseNumber++;
 		if (houseNumber==1)
 		{
@@ -76,6 +86,7 @@ public class Land extends Cell {
 	@Override
 	public String toString()
 	{
+		/*return the land's information*/
 		String str="Land Name : "+ name+"\n"+"price: "+price;
 		int rent=price/10;
 		str+="RENT : "+rent+"\n";
@@ -93,11 +104,13 @@ public class Land extends Cell {
 	@Override
 	public String getType()
 	{
+		/*return the type of cell*/
 		return "land";
 	}
 	@Override
 	public int getCost()
 	{
+		/*return the rent cost*/
 		return cost;
 	}
 }

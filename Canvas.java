@@ -30,16 +30,19 @@ public class Canvas extends JPanel //implements MouseListener
 		}
 		public void setXY(int x,int y)
 		{
+			/*Set position to display Lulu */
 			this.x=x;
 			this.y=y;
 		}
 		public void setXY2(int x2,int y2)
 		{
+			/*Set position to display Annie */
 			this.x2=x2;
 			this.y2=y2;
 		}
 		public void setDice(int d1,int d2)
 		{
+			/*Set dice faces */
 			this.d1=d1;
 			this.d2=d2;
 		}
@@ -47,6 +50,7 @@ public class Canvas extends JPanel //implements MouseListener
 		@Override
 	    public void paintComponent (Graphics g) 
 		 {
+			/*draw Canvas*/
 	       super.paintComponent(g);
 	       g.drawImage(board.getImage(),0 ,0 ,null );
 	       g.drawImage(lulu.getImage(), x, y, null);

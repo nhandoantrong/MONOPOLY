@@ -7,7 +7,7 @@ import java.util.Random;
 import java.awt.event.*;
 import cell.*;
 import player.*;
-public class Field extends JFrame implements MouseMotionListener
+public class Field extends JFrame 
 {
 	private JButton rollButton= new JButton("Roll");
 	private JButton buyButton= new JButton("Buy");
@@ -59,23 +59,16 @@ public class Field extends JFrame implements MouseMotionListener
 		finishButton.addActionListener(new finishListener());
 		displaycell.setBounds(701,501,200,200);
 		displayturn.setBounds(901,501,400,400);
-		addMouseMotionListener(this);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  // Exit program if close-window button clicked
 	    setTitle("MONOPOLY"); // "super" JFrame sets title
 	    setSize(1200,800);         // "super" JFrame sets initial size
 	    setVisible(true);  
 	}
-	@Override
-	public void mouseDragged(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseMoved(MouseEvent evt) {
-	}
+	
 	private class rollListener implements ActionListener
 	{
+		/*Roll dice and move player, pay if the player lands on other player's land*/
 		@Override
 		public void actionPerformed(ActionEvent evt) 
 		{
@@ -556,6 +549,7 @@ public class Field extends JFrame implements MouseMotionListener
 	}
 	public void win(int win)
 	{
+		/*Display the winner*/
 		cp.remove(canvas);
 		cp.remove(buyButton);
 		cp.remove(displaycell);

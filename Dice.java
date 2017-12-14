@@ -9,15 +9,18 @@ public class Dice
 	}
 	public void roll()
 	{
+		/*Roll dices*/
 		dice1=r.nextInt(6)+1;
 		dice2=r.nextInt(6)+1;
 	}
 	public int getDice1()
 	{
+		/*Return Dice 1 */
 		return dice1;
 	}
 	public int getDice2()
 	{
+		/*Return Dice 2 */
 		return dice2;
 	}
 
