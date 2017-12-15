@@ -9,9 +9,7 @@ import javax.swing.JPanel;
 
 public class Canvas extends JPanel //implements MouseListener
 	{
-		private ImageIcon board=new ImageIcon("board1.jpg");
-		private ImageIcon lulu=new ImageIcon("lulu2.jpg");
-		private ImageIcon annie= new ImageIcon("annie.png");
+		
 		private ImageIcon[] dice= {new ImageIcon ("1.jpg"),new ImageIcon ("2.jpg"),new ImageIcon ("3.jpg"),
 				new ImageIcon ("4.jpg"),new ImageIcon ("5.jpg"),new ImageIcon ("6.jpg")};
 		
